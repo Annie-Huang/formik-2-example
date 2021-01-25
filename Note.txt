@@ -5,4 +5,4 @@ https://github.com/Annie-Huang/formik-2-example
 
 ==========================================================
 
-
+C:\react>npx create-react-app formik-2-example --typescript
