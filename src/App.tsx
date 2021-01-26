@@ -35,6 +35,18 @@ const MyRadio: React.FC<MyRadioProps> = ({ label, ...props }) => {
   return <FormControlLabel {...field} control={<Radio />} label={label} />;
 };
 
+const MyTextField: React.FC<FieldHookConfig<{}>> = ({
+  placeholder,
+  ...props
+}) => {
+  const [field, meta] = useField<{}>(props);
+  const errorText = meta.error && meta.touched ? meta.error : '';
+
+  return (
+    <TextField placeholder={placeholder} {...field} helperText={errorText} />
+  );
+};
+
 function App() {
   return (
     <div>
@@ -74,6 +86,11 @@ function App() {
                 name='firstName'
                 type='input'
                 as={TextField}
+              />
+              <MyTextField
+                placeholder='first name'
+                name='firstName'
+                type='input'
               />
             </div>
             <div>
