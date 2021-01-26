@@ -26,8 +26,22 @@ function App() {
             {/*/>*/}
 
             {/* Use Field from formik instead of TextField from material-ui. the 'as' property will force it to use the style */}
-            <Field name='firstName' type='input' as={TextField}></Field>
-            <Field name='lastName' type='input' as={TextField}></Field>
+            <div>
+              <Field
+                placeholder='first name'
+                name='firstName'
+                type='input'
+                as={TextField}
+              />
+            </div>
+            <div>
+              <Field
+                placeholder='last name'
+                name='lastName'
+                type='input'
+                as={TextField}
+              />
+            </div>
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
