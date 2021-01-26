@@ -78,13 +78,27 @@ function App() {
           yogurt: '',
           pets: [{ type: 'cat', name: 'jarvis', id: '' + Math.random() }],
         }}
-        validationSchema={validationSchema}
-        /* validate={(values) => {
+        // validationSchema={validationSchema}
+        /*        validate={(values) => {
           const errors: Record<string, string> = {};
 
           if (values.firstName.includes('bob')) {
             errors.firstName = 'no bob';
           }
+
+          // The structure you need to contruct for errors in array object like pets.
+          // "pets": [
+          //   null,
+          //   {
+          //     "name": "pets[1].name is a required field"
+          //   },
+          //   {
+          //     "name": "pets[2].name is a required field"
+          //   },
+          //   {
+          //     "name": "pets[3].name is a required field"
+          //   }
+          // ]
 
           return errors;
         }}*/
