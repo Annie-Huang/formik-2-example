@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import { TextField, Button } from "@material-ui/core";
 
 function App() {
@@ -18,12 +18,16 @@ function App() {
       >
         {({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <TextField
-              name="firstName"
-              value={values.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
+            {/*<TextField*/}
+            {/*  name="firstName"*/}
+            {/*  value={values.firstName}*/}
+            {/*  onChange={handleChange}*/}
+            {/*  onBlur={handleBlur}*/}
+            {/*/>*/}
+
+            {/* Use Field from formik instead of TextField from material-ui. the 'as' property will force it to use the style */}
+            <Field name="firstName" type="input" as={TextField}></Field>
+
             <div>
               <Button disabled={isSubmitting} type="submit">
                 submit
