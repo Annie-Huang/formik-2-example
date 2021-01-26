@@ -13,6 +13,8 @@ import {
   Checkbox,
   Radio,
   FormControlLabel,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
 import * as yup from 'yup';
 
@@ -69,7 +71,7 @@ function App() {
           isTall: false,
           cookies: [],
           yogurt: '',
-          pets: [{ type: 'cat', name: 'jarvis' }],
+          pets: [{ type: 'cat', name: 'jarvis', id: '' + Math.random() }],
         }}
         validationSchema={validationSchema}
         /* validate={(values) => {
@@ -162,15 +164,23 @@ function App() {
             <FieldArray name='pets'>
               {(arrayHelpers) => (
                 <div>
-                  {values.pets.map((pet, index) => {
-                    const name = `pets.${index}.name`;
-
-                    return (
-                      <div key={pet.name}>
-                        <MyTextField placeholder='pet name' name={name} />
-                      </div>
-                    );
-                  })}
+                  {values.pets.map((pet, index) => (
+                    <div key={pet.id}>
+                      <MyTextField
+                        placeholder='pet name'
+                        name={`pets.${index}.name`}
+                      />
+                      <Field
+                        name={`pets.${index}.type`}
+                        type='select'
+                        as={Select}
+                      >
+                        <MenuItem value='cat'>cat</MenuItem>
+                        <MenuItem value='dog'>dog</MenuItem>
+                        <MenuItem value='frog'>frog</MenuItem>
+                      </Field>
+                    </div>
+                  ))}
                 </div>
               )}
             </FieldArray>
