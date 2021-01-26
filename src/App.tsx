@@ -1,4 +1,11 @@
-import { Formik, Field, Form, useField } from 'formik';
+import {
+  Formik,
+  Field,
+  Form,
+  useField,
+  FieldAttributes,
+  FieldHookConfig,
+} from 'formik';
 import {
   TextField,
   Button,
@@ -7,8 +14,14 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 
-const MyRadio = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
+// type MyRadioProps = { label: string } & FieldAttributes<{}>;       // FieldAttributes are from the tutorial.
+type MyRadioProps = { label: string } & FieldHookConfig<{}>; // FieldHookConfig is from the version of Formik I used...
+
+const MyRadio: React.FC<MyRadioProps> = ({ label, ...props }) => {
+  // Click into useField through ctrl, you will see:
+  // export declare function useField<Val = any>(propsOrFieldName: string | FieldHookConfig<Val>): [FieldInputProps<Val>, FieldMetaProps<Val>, FieldHelperProps<Val>];
+  // const [field, meta] = useField(props);
+  const [field, meta] = useField<{}>(props);
 
   // field got checked, mutiple, name, onBlur, onChange, value, etc properties.
   // field.
