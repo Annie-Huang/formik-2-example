@@ -17,6 +17,9 @@ import {
 // type MyRadioProps = { label: string } & FieldAttributes<{}>;       // FieldAttributes are from the tutorial.
 type MyRadioProps = { label: string } & FieldHookConfig<{}>; // FieldHookConfig is from the version of Formik I used...
 
+// useField is to get access to the Formik properties. You will have to use this whenever you have a field that does not map
+// to your UI component simply. You will need to create a custom component like so. and then to get access to any of the formik
+// properties we use the useField
 const MyRadio: React.FC<MyRadioProps> = ({ label, ...props }) => {
   // Click into useField through ctrl, you will see:
   // export declare function useField<Val = any>(propsOrFieldName: string | FieldHookConfig<Val>): [FieldInputProps<Val>, FieldMetaProps<Val>, FieldHelperProps<Val>];
@@ -29,14 +32,7 @@ const MyRadio: React.FC<MyRadioProps> = ({ label, ...props }) => {
   // meta.
 
   //<FormControlLabel value='other' control={<Radio />} label='Other' />;
-  return (
-    <FormControlLabel
-      {...field}
-      value='other'
-      control={<Radio />}
-      label={label}
-    />
-  );
+  return <FormControlLabel {...field} control={<Radio />} label={label} />;
 };
 
 function App() {
@@ -107,9 +103,17 @@ function App() {
             <Field name='cookies' type='checkbox' value='sugar' as={Checkbox} />
 
             <div>yogurt</div>
-            <Field name='yogurt' type='radio' value='peach' as={Radio} />
-            <Field name='yogurt' type='radio' value='blueberry' as={Radio} />
-            <Field name='yogurt' type='radio' value='apple' as={Radio} />
+            {/*<Field name='yogurt' type='radio' value='peach' as={Radio} />*/}
+            {/*<Field name='yogurt' type='radio' value='blueberry' as={Radio} />*/}
+            {/*<Field name='yogurt' type='radio' value='apple' as={Radio} />*/}
+            <MyRadio name='yogurt' type='radio' value='peach' label='peach' />
+            <MyRadio
+              name='yogurt'
+              type='radio'
+              value='blueberry'
+              label='blueberry'
+            />
+            <MyRadio name='yogurt' type='radio' value='apple' label='apple' />
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
