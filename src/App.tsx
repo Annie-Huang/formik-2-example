@@ -1,11 +1,11 @@
 import { Formik, Field, Form } from 'formik';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Checkbox } from '@material-ui/core';
 
 function App() {
   return (
     <div>
       <Formik
-        initialValues={{ firstName: '', lastName: '' }}
+        initialValues={{ firstName: '', lastName: '', isTall: false }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -44,6 +44,8 @@ function App() {
                 as={TextField}
               />
             </div>
+
+            <Field name='isTall' type='checkbox' as={Checkbox} />
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
