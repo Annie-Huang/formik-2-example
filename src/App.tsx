@@ -5,7 +5,12 @@ function App() {
   return (
     <div>
       <Formik
-        initialValues={{ firstName: '', lastName: '', isTall: false }}
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          isTall: false,
+          cookies: [],
+        }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -46,6 +51,21 @@ function App() {
             </div>
 
             <Field name='isTall' type='checkbox' as={Checkbox} />
+
+            <div>cookies</div>
+            <Field
+              name='cookies'
+              type='checkbox'
+              value='chocolate chip'
+              as={Checkbox}
+            />
+            <Field
+              name='cookies'
+              type='checkbox'
+              value='snickerdoodle'
+              as={Checkbox}
+            />
+            <Field name='cookies' type='checkbox' value='sugar' as={Checkbox} />
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
