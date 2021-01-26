@@ -59,6 +59,11 @@ const MyTextField: React.FC<FieldHookConfig<{}>> = ({
 // When the form failed in validation error, it won't allow you to submit.
 const validationSchema = yup.object({
   firstName: yup.string().required().max(10),
+  pets: yup.array().of(
+    yup.object({
+      name: yup.string().required(),
+    })
+  ),
 });
 
 function App() {
