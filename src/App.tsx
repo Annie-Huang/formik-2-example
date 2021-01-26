@@ -13,6 +13,7 @@ import {
   Radio,
   FormControlLabel,
 } from '@material-ui/core';
+import * as yup from 'yup';
 
 // type MyRadioProps = { label: string } & FieldAttributes<{}>;       // FieldAttributes are from the tutorial.
 type MyRadioProps = { label: string } & FieldHookConfig<{}>; // FieldHookConfig is from the version of Formik I used...
@@ -52,6 +53,10 @@ const MyTextField: React.FC<FieldHookConfig<{}>> = ({
   );
 };
 
+const validationSchema = yup.object({
+  firstName: yup.string().required().max(10),
+});
+
 function App() {
   return (
     <div>
@@ -63,7 +68,8 @@ function App() {
           cookies: [],
           yogurt: '',
         }}
-        validate={(values) => {
+        validationSchema={validationSchema}
+        /* validate={(values) => {
           const errors: Record<string, string> = {};
 
           if (values.firstName.includes('bob')) {
@@ -71,7 +77,7 @@ function App() {
           }
 
           return errors;
-        }}
+        }}*/
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
