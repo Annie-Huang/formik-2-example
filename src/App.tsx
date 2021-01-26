@@ -1,4 +1,4 @@
-import { Formik, Field } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { TextField, Button } from '@material-ui/core';
 
 function App() {
@@ -16,8 +16,10 @@ function App() {
           resetForm();
         }}
       >
-        {({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+        {/*{({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (*/}
+        {({ values, isSubmitting }) => (
+          // <form onSubmit={handleSubmit}>
+          <Form>
             {/*<TextField*/}
             {/*  name="firstName"*/}
             {/*  value={values.firstName}*/}
@@ -49,7 +51,7 @@ function App() {
               </Button>
             </div>
             <pre>{JSON.stringify(values, null, 2)}</pre>
-          </form>
+          </Form>
         )}
       </Formik>
     </div>
