@@ -1,5 +1,5 @@
 import { Formik, Field, Form } from 'formik';
-import { TextField, Button, Checkbox } from '@material-ui/core';
+import { TextField, Button, Checkbox, Radio } from '@material-ui/core';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
           lastName: '',
           isTall: false,
           cookies: [],
+          yogurt: '',
         }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
@@ -66,6 +67,11 @@ function App() {
               as={Checkbox}
             />
             <Field name='cookies' type='checkbox' value='sugar' as={Checkbox} />
+
+            <div>yogurt</div>
+            <Field name='yogurt' type='radio' value='peach' as={Radio} />
+            <Field name='yogurt' type='radio' value='blueberry' as={Radio} />
+            <Field name='yogurt' type='radio' value='apple' as={Radio} />
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
