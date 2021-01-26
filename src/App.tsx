@@ -1,16 +1,16 @@
-import { Formik, Field } from "formik";
-import { TextField, Button } from "@material-ui/core";
+import { Formik, Field } from 'formik';
+import { TextField, Button } from '@material-ui/core';
 
 function App() {
   return (
     <div>
       <Formik
-        initialValues={{ firstName: "" }}
+        initialValues={{ firstName: '', lastName: '' }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
           // make async call
-          console.log("submit: ", data);
+          console.log('submit: ', data);
 
           setSubmitting(false);
           resetForm();
@@ -26,10 +26,11 @@ function App() {
             {/*/>*/}
 
             {/* Use Field from formik instead of TextField from material-ui. the 'as' property will force it to use the style */}
-            <Field name="firstName" type="input" as={TextField}></Field>
+            <Field name='firstName' type='input' as={TextField}></Field>
+            <Field name='lastName' type='input' as={TextField}></Field>
 
             <div>
-              <Button disabled={isSubmitting} type="submit">
+              <Button disabled={isSubmitting} type='submit'>
                 submit
               </Button>
             </div>
