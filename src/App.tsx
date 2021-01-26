@@ -1,5 +1,30 @@
-import { Formik, Field, Form } from 'formik';
-import { TextField, Button, Checkbox, Radio } from '@material-ui/core';
+import { Formik, Field, Form, useField } from 'formik';
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Radio,
+  FormControlLabel,
+} from '@material-ui/core';
+
+const MyRadio = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+
+  // field got checked, mutiple, name, onBlur, onChange, value, etc properties.
+  // field.
+  // meta got error, initialError, initialTouched, initialValue, touched, value, etc properties
+  // meta.
+
+  //<FormControlLabel value='other' control={<Radio />} label='Other' />;
+  return (
+    <FormControlLabel
+      {...field}
+      value='other'
+      control={<Radio />}
+      label={label}
+    />
+  );
+};
 
 function App() {
   return (
