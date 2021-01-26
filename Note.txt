@@ -6,3 +6,4 @@ https://github.com/Annie-Huang/formik-2-example
 ==========================================================
 
 C:\react>npx create-react-app formik-2-example --typescript
+C:\react\formik-2-example>npm i formik yup @material-ui/core @material-ui/icons
