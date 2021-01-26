@@ -5,6 +5,7 @@ import {
   useField,
   FieldAttributes,
   FieldHookConfig,
+  FieldArray,
 } from 'formik';
 import {
   TextField,
@@ -53,6 +54,7 @@ const MyTextField: React.FC<FieldHookConfig<{}>> = ({
   );
 };
 
+// When the form failed in validation error, it won't allow you to submit.
 const validationSchema = yup.object({
   firstName: yup.string().required().max(10),
 });
@@ -67,6 +69,7 @@ function App() {
           isTall: false,
           cookies: [],
           yogurt: '',
+          pets: [{ type: 'cat', name: 'jarvis' }],
         }}
         validationSchema={validationSchema}
         /* validate={(values) => {
@@ -152,6 +155,25 @@ function App() {
               label='blueberry'
             />
             <MyRadio name='yogurt' type='radio' value='apple' label='apple' />
+
+            <div>pets</div>
+            {/* arrayHelpers got insert, move, name, pop, push, remove, replace, swap, unshift, etc method.
+                replace with {} and you can ctrl key to see the list. */}
+            <FieldArray name='pets'>
+              {(arrayHelpers) => (
+                <div>
+                  {values.pets.map((pet, index) => {
+                    const name = `pets.${index}.name`;
+
+                    return (
+                      <div key={pet.name}>
+                        <MyTextField placeholder='pet name' name={name} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </FieldArray>
 
             <div>
               <Button disabled={isSubmitting} type='submit'>
