@@ -43,7 +43,12 @@ const MyTextField: React.FC<FieldHookConfig<{}>> = ({
   const errorText = meta.error && meta.touched ? meta.error : '';
 
   return (
-    <TextField placeholder={placeholder} {...field} helperText={errorText} />
+    <TextField
+      placeholder={placeholder}
+      {...field}
+      helperText={errorText}
+      error={!!errorText}
+    />
   );
 };
 
@@ -58,6 +63,15 @@ function App() {
           cookies: [],
           yogurt: '',
         }}
+        validate={(values) => {
+          const errors: Record<string, string> = {};
+
+          if (values.firstName.includes('bob')) {
+            errors.firstName = 'no bob';
+          }
+
+          return errors;
+        }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -69,7 +83,7 @@ function App() {
         }}
       >
         {/*{({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (*/}
-        {({ values, isSubmitting }) => (
+        {({ values, errors, isSubmitting }) => (
           // <form onSubmit={handleSubmit}>
           <Form>
             {/*<TextField*/}
@@ -81,12 +95,13 @@ function App() {
 
             {/* Use Field from formik instead of TextField from material-ui. the 'as' property will force it to use the style */}
             <div>
-              <Field
-                placeholder='first name'
-                name='firstName'
-                type='input'
-                as={TextField}
-              />
+              {/*<Field*/}
+              {/*  placeholder='first name'*/}
+              {/*  name='firstName'*/}
+              {/*  type='input'*/}
+              {/*  as={TextField}*/}
+              {/*/>*/}
+
               <MyTextField
                 placeholder='first name'
                 name='firstName'
@@ -137,7 +152,9 @@ function App() {
                 submit
               </Button>
             </div>
+
             <pre>{JSON.stringify(values, null, 2)}</pre>
+            <pre>{JSON.stringify(errors, null, 2)}</pre>
           </Form>
         )}
       </Formik>
