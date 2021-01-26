@@ -164,6 +164,17 @@ function App() {
             <FieldArray name='pets'>
               {(arrayHelpers) => (
                 <div>
+                  <Button
+                    onClick={() =>
+                      arrayHelpers.push({
+                        type: 'frog',
+                        name: '',
+                        id: '' + Math.random(),
+                      })
+                    }
+                  >
+                    add pet
+                  </Button>
                   {values.pets.map((pet, index) => (
                     <div key={pet.id}>
                       <MyTextField
