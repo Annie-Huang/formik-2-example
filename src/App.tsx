@@ -6,13 +6,14 @@ function App() {
     <div>
       <Formik
         initialValues={{ firstName: "" }}
-        onSubmit={(data, { setSubmitting }) => {
+        onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
           // make async call
           console.log("submit: ", data);
 
           setSubmitting(false);
+          resetForm();
         }}
       >
         {({ values, isSubmitting, handleChange, handleBlur, handleSubmit }) => (
@@ -23,9 +24,11 @@ function App() {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <Button disabled={isSubmitting} type="submit">
-              submit
-            </Button>
+            <div>
+              <Button disabled={isSubmitting} type="submit">
+                submit
+              </Button>
+            </div>
             <pre>{JSON.stringify(values, null, 2)}</pre>
           </form>
         )}
